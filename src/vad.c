@@ -44,6 +44,7 @@ Features compute_features(const float *x, int N) {
    */
   Features feat;
   feat.p = compute_power(x,N);
+  //feat.zcr = feat.p = feat.am = (float) rand()/RAND_MAX;
   return feat;
 }
 
@@ -95,12 +96,12 @@ VAD_STATE vad(VAD_DATA *vad_data, float *x, float alpha1) {
     break;
 
   case ST_SILENCE:
-    if (f.p > vad_data ->p0 + alpha1)
+    if (f.p > vad_data->p0 + alpha1)
       vad_data->state = ST_VOICE;
     break;
 
   case ST_VOICE:
-    if (f.p < vad_data ->p0 + alpha1)
+    if (f.p < vad_data->p0 + alpha1)
       vad_data->state = ST_SILENCE;
     break;
 
