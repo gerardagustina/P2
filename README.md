@@ -136,15 +136,21 @@ Ejercicios
   continuación, una captura de `wavesurfer` en la que se vea con claridad la señal temporal, el contorno de
   potencia y la tasa de cruces por cero, junto con el etiquetado manual de los segmentos.
 
-
+![alt text](image.png)
 - A la vista de la gráfica, indique qué valores considera adecuados para las magnitudes siguientes:
 
 	* Incremento del nivel potencia en dB, respecto al nivel correspondiente al silencio inicial, para
 	  estar seguros de que un segmento de señal se corresponde con voz.
 
+	  Al aumentar el nivel de sonido en aproximadamente 10 decibeles desde el estado de silencio inicial, logramos discernir entre una señal de voz y una de silencio.
+
 	* Duración mínima razonable de los segmentos de voz y silencio.
 
+	Para determinar si una parte de la señal es un silencio, requerimos que tenga una duración mínima de 70 milisegundos (Silence Time). En contraste, para que un segmento sea considerado como voz, debe tener al menos una duración de 250 milisegundos (Voice Time).
+
 	* ¿Es capaz de sacar alguna conclusión a partir de la evolución de la tasa de cruces por cero?
+
+	Utilizando la tasa de cruces por cero, en ocasiones podemos determinar si un segmento es de voz o de silencio, aunque esta medida proporciona menos información que la potencia. No obstante, nos permite distinguir entre sonidos sordos y sonoros: un sonido sordo exhibirá un mayor número de cruces por cero, mientras que en un sonido sonoro, dicho número disminuirá.
 
 
 ### Desarrollo del detector de actividad vocal
@@ -157,9 +163,13 @@ Ejercicios
 
 - Explique, si existen. las discrepancias entre el etiquetado manual y la detección automática.
 
+Como se evidencia en el gráfico, los resultados generados por nuestro sistema y los marcados manualmente son notablemente similares, con apenas errores mínimos en la delimitación del comienzo o el final de la voz. Estas discrepancias podrían atribuirse a la aplicación de ciertos umbrales en el programa, o bien, a una posible falta de precisión al etiquetar manualmente la voz, siendo el sistema capaz de detectarla de manera más efectiva que nosotros.
+
 - Evalúe los resultados sobre la base de datos `db.v4` con el script `vad_evaluation.pl` e inserte a 
   continuación las tasas de sensibilidad (*recall*) y precisión para el conjunto de la base de datos (sólo
   el resumen).
+
+  ![alt text](image-1.png)
 
 
 ### Trabajos de ampliación

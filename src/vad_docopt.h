@@ -15,8 +15,8 @@ typedef struct {
     int help;
     int version;
     /* options with arguments */
-    char *alfa1;
-    char *alfa2;
+    char *alpha1;
+    char *alpha2;
     char *input_wav;
     char *output_vad;
     char *output_wav;
@@ -272,10 +272,10 @@ int elems_to_args(Elements *elements, DocoptArgs *args, bool help,
             args->version = option->value;
         } else if (!strcmp(option->olong, "--alfa1")) {
             if (option->argument)
-                args->alfa1 = option->argument;
+                args->alpha1 = option->argument;
         } else if (!strcmp(option->olong, "--alfa2")) {
             if (option->argument)
-                args->alfa2 = option->argument;
+                args->alpha2 = option->argument;
         } else if (!strcmp(option->olong, "--input-wav")) {
             if (option->argument)
                 args->input_wav = option->argument;
