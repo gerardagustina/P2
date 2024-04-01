@@ -136,7 +136,7 @@ Ejercicios
   continuación, una captura de `wavesurfer` en la que se vea con claridad la señal temporal, el contorno de
   potencia y la tasa de cruces por cero, junto con el etiquetado manual de los segmentos.
 
-![alt text](image.png)
+![alt text](image-3.png)
 - A la vista de la gráfica, indique qué valores considera adecuados para las magnitudes siguientes:
 
 	* Incremento del nivel potencia en dB, respecto al nivel correspondiente al silencio inicial, para
@@ -159,7 +159,9 @@ Ejercicios
   tiempo real tan exacto como sea posible. Tome como objetivo la maximización de la puntuación-F `TOTAL`.
 
 - Inserte una gráfica en la que se vea con claridad la señal temporal, el etiquetado manual y la detección
-  automática conseguida para el fichero grabado al efecto. 
+  automática conseguida para el fichero grabado al efecto.
+
+  ![alt text](image-2.png) 
 
 - Explique, si existen. las discrepancias entre el etiquetado manual y la detección automática.
 
@@ -184,6 +186,8 @@ Como se evidencia en el gráfico, los resultados generados por nuestro sistema y
 
 - Si ha usado `docopt_c` para realizar la gestión de las opciones y argumentos del programa `vad`, inserte
   una captura de pantalla en la que se vea el mensaje de ayuda del programa.
+
+  ![alt text](image-4.png)
 
 
 ### Contribuciones adicionales y/o comentarios acerca de la práctica
