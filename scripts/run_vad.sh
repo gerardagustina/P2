@@ -1,7 +1,5 @@
 #!/bin/bash
 
-alpha1=${1:-5}
-
 # Be sure that this file has execution permissions:
 # Use the nautilus explorer or chmod +x run_vad.sh
 
@@ -10,10 +8,18 @@ alpha1=${1:-5}
 set -o pipefail
 
 # Write here the name and path of your program and database
-
 DIR_P2=$HOME/PAV/P2
 DB=$DIR_P2/db.v4
-CMD="$DIR_P2/bin/vad -1 $alpha1"
+CMD="$DIR_P2/bin/vad"
+
+if [ $# -eq 1 ]
+  then
+    CMD="$DIR_P2/bin/vad --alfa1=$1"
+fi
+if [ $# -eq 2 ]
+  then
+    CMD="$DIR_P2/bin/vad --alfa1=$1 --alfa2=$2"
+fi
 
 for filewav in $DB/*/*wav; do
 #    echo
@@ -24,8 +30,9 @@ for filewav in $DB/*/*wav; do
     fi
 
     filevad=${filewav/.wav/.vad}
-
+    #fileout=${filewav/.wav/_out.wav}
     $CMD -i $filewav -o $filevad || exit 1
+    #$CMD -i $filewav -o $filevad -w $fileout || exit 1
 
 # Alternatively, uncomment to create output wave files
 #    filewavOut=${filewav/.wav/.vad.wav}

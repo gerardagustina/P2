@@ -13,10 +13,10 @@
 typedef struct {
     /* options without arguments */
     int help;
-    int verbose;
     int version;
     /* options with arguments */
-    char *alpha1;
+    char *alfa1;
+    char *alfa2;
     char *input_wav;
     char *output_vad;
     char *output_wav;
@@ -34,13 +34,13 @@ const char help_message[] =
 "   vad --version\n"
 "\n"
 "Options:\n"
-"   -i FILE, --input-wav=FILE   WAVE file for voice activity detection\n"
-"   -o FILE, --output-vad=FILE  Label file with the result of VAD\n"
-"   -w FILE, --output-wav=FILE  WAVE file with silences cleared\n"
-"   -1 REAL, --alpha1=REAL  alpha 1 de decisió veu/silenci [default: 5]\n"
-"   -v, --verbose  Show debug information\n"
-"   -h, --help     Show this screen\n"
-"   --version      Show the version of the project\n"
+"   -i FILE, --input-wav=FILE                 WAVE file for voice activity detection\n"
+"   -o FILE, --output-vad=FILE                Label file with the result of VAD\n"
+"   -w FILE, --output-wav=FILE                WAVE file with silences cleared\n"
+"   -1 REAL, --alfa1=REAL                     Guany per obtenir el llindar de deteccio 1 [default: 5]\n"
+"   -2 REAL, --alfa2=REAL                     Guany per obtenir el llindar de deteccio 2 [default: 5]\n"
+"   -h, --help                                Show this screen\n"
+"   --version                                 Show the version of the project\n"
 "";
 
 const char usage_pattern[] =
@@ -268,13 +268,14 @@ int elems_to_args(Elements *elements, DocoptArgs *args, bool help,
             return 1;
         } else if (!strcmp(option->olong, "--help")) {
             args->help = option->value;
-        } else if (!strcmp(option->olong, "--verbose")) {
-            args->verbose = option->value;
         } else if (!strcmp(option->olong, "--version")) {
             args->version = option->value;
-        } else if (!strcmp(option->olong, "--alpha1")) {
+        } else if (!strcmp(option->olong, "--alfa1")) {
             if (option->argument)
-                args->alpha1 = option->argument;
+                args->alfa1 = option->argument;
+        } else if (!strcmp(option->olong, "--alfa2")) {
+            if (option->argument)
+                args->alfa2 = option->argument;
         } else if (!strcmp(option->olong, "--input-wav")) {
             if (option->argument)
                 args->input_wav = option->argument;
@@ -304,7 +305,7 @@ int elems_to_args(Elements *elements, DocoptArgs *args, bool help,
 
 DocoptArgs docopt(int argc, char *argv[], bool help, const char *version) {
     DocoptArgs args = {
-        0, 0, 0, (char*) "5", NULL, NULL, NULL,
+        0, 0, (char*) "5", (char*) "5", NULL, NULL, NULL,
         usage_pattern, help_message
     };
     Tokens ts;
@@ -314,9 +315,9 @@ DocoptArgs docopt(int argc, char *argv[], bool help, const char *version) {
     };
     Option options[] = {
         {"-h", "--help", 0, 0, NULL},
-        {"-v", "--verbose", 0, 0, NULL},
         {NULL, "--version", 0, 0, NULL},
-        {"-1", "--alpha1", 1, 0, NULL},
+        {"-1", "--alfa1", 1, 0, NULL},
+        {"-2", "--alfa2", 1, 0, NULL},
         {"-i", "--input-wav", 1, 0, NULL},
         {"-o", "--output-vad", 1, 0, NULL},
         {"-w", "--output-wav", 1, 0, NULL}
